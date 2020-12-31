@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                             <div class="post-body">
-                                {!!  htmlspecialchars_decode($post -> content) !!}
+                                {!!  Str::of(htmlspecialchars_decode($post -> content)) -> words(30,' >> >>') !!}
                                 <p><a href="{{ route('blog.single',$post -> slug) }}" class="btn btn-color btn-sm">Read More</a></p>
                             </div>
                         </article>
@@ -65,22 +65,23 @@
                         {{ $all_post -> links() }}
                     </ul>
 
-                    <ul class="pagination">
-                        <li><a href="#" aria-label="Previous"><span aria-hidden="true"><i class="ti-arrow-left"></i></span></a>
-                        </li>
-                        <li class="active"><a href="#">1</a>
-                        </li>
-                        <li><a href="#">2</a>
-                        </li>
-                        <li><a href="#">3</a>
-                        </li>
-                        <li><a href="#">4</a>
-                        </li>
-                        <li><a href="#">5</a>
-                        </li>
-                        <li><a href="#" aria-label="Next"><span aria-hidden="true"><i class="ti-arrow-right"></i></span></a>
-                        </li>
-                    </ul>
+{{--                    <ul class="pagination">--}}
+{{--                        <li><a href="#" aria-label="Previous"><span aria-hidden="true"><i class="ti-arrow-left"></i></span></a>--}}
+{{--                        </li>--}}
+{{--                        <li class="active"><a href="#">1</a>--}}
+{{--                        </li>--}}
+{{--                        <li><a href="#">2</a>--}}
+{{--                        </li>--}}
+{{--                        <li><a href="#">3</a>--}}
+{{--                        </li>--}}
+{{--                        <li><a href="#">4</a>--}}
+{{--                        </li>--}}
+{{--                        <li><a href="#">5</a>--}}
+{{--                        </li>--}}
+{{--                        <li><a href="#" aria-label="Next"><span aria-hidden="true"><i class="ti-arrow-right"></i></span></a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+
                     <!-- end of pagination-->
                 </div>
 

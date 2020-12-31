@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -91,6 +92,29 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Tag::find($id);
+        $data -> delete();
+        return redirect()->route('tag.index')->with('success', 'Tag deleted successful');
     }
+
+    /**
+     *  Tag Unpublished
+     */
+    public function unpublishedTag($id){
+        $data = Tag::find($id);
+        $data -> status ='Unpublished';
+        $data -> update();
+        return redirect()->route('tag.index')->with('success','Tag Unpublished successful');
+    }
+
+    /**
+     *  Tag published
+     */
+    public function publishedTag($id){
+        $data = Tag::find($id);
+        $data -> status ='Published';
+        $data -> update();
+        return redirect()->route('tag.index')->with('success','Tag published successful');
+    }
+
 }

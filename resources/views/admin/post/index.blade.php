@@ -71,14 +71,14 @@
                                             </td>
                                             <td>
                                                 @if($data -> status == 'Published')
-                                                    <a class="btn btn-sm btn-danger" href="{{ route('category.unpublished', $data -> id ) }}"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                                    <a class="btn btn-sm btn-danger" href="{{ route('post.unpublished', $data -> id ) }}"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
                                                 @else
-                                                    <a class="btn btn-sm btn-success" href="{{ route('category.published', $data -> id ) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('post.published', $data -> id ) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                                 @endif
 
                                                 <a id="post-edit" edit_id="{{ $data -> id }}" class="btn btn-warning btn-sm" data-toggle="modal" href="#post-modal-update">Edit</a>
 
-                                                <form style="display: inline;" action="{{ route('post-category.destroy',$data -> id) }}" method="POST">
+                                                <form style="display: inline;" action="{{ route('post.destroy',$data -> id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="btn btn-sm btn-danger">Delete</button>

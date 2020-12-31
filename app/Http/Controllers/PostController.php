@@ -18,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $all_data = Post::all();
+        $all_data = Post::latest() -> get();
         $categories = Category::all();
         return view('admin.post.index',compact('all_data','categories'));
     }
@@ -109,6 +109,28 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Post::find($id);
+        $data -> delete();
+        return redirect()->route('post.index')->with('success', 'Post deleted successful');
+
+    }
+    /**
+     *  Tag Unpublished
+     */
+    public function unpublishedTag($id){
+        $data = Post::find($id);
+        $data -> status ='Unpublished';
+        $data -> update();
+        return redirect()->route('post.index')->with('success','Post Unpublished successful');
+    }
+
+    /**
+     *  Tag published
+     */
+    public function publishedTag($id){
+        $data = Post::find($id);
+        $data -> status ='Published';
+        $data -> update();
+        return redirect()->route('post.index')->with('success','Post published successful');
     }
 }

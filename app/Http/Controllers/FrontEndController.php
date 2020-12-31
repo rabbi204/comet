@@ -19,7 +19,7 @@ class FrontEndController extends Controller
      */
     public function blogPage(){
 
-        $all_post = Post::latest() ->paginate(2);
+        $all_post = Post::latest() ->paginate(5);
         return view('frontend.blog',compact('all_post'));
     }
 

@@ -34,6 +34,10 @@ Route::get('post-category-published/{id}','App\Http\Controllers\CategoryControll
 
 // all Tag routes
 Route::resource('tag','App\Http\Controllers\TagController');
+Route::get('tag-unpublished/{id}', 'App\Http\Controllers\TagController@unpublishedTag')-> name('tag.unpublished');
+Route::get('tag-published/{id}', 'App\Http\Controllers\TagController@publishedTag')-> name('tag.published');
 
 // all Post routes
 Route::resource('post','App\Http\Controllers\PostController');
+Route::get('post-unpublished/{id}', 'App\Http\Controllers\PostController@unpublishedTag')-> name('post.unpublished');
+Route::get('post-published/{id}', 'App\Http\Controllers\PostController@publishedTag')-> name('post.published');
