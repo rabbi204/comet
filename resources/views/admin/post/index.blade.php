@@ -76,7 +76,7 @@
                                                     <a class="btn btn-sm btn-success" href="{{ route('post.published', $data -> id ) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                                 @endif
 
-                                                <a id="post-edit" edit_id="{{ $data -> id }}" class="btn btn-warning btn-sm" data-toggle="modal" href="#post-modal-update">Edit</a>
+                                                <a id="post-edit" edit_id="{{ $data -> id }}" class="btn btn-warning btn-sm" data-toggle="modal" href="#">Edit</a>
 
                                                 <form style="display: inline;" action="{{ route('post.destroy',$data -> id) }}" method="POST">
                                                     @csrf
@@ -139,22 +139,37 @@
             </div>
 
             {{--    Edit-Post-modal--}}
-            <div id="post-modal-update" class="modal fade">
-                <div class="modal-dialog modal-dialog-centered">
+            <div id="post_modal_update" class="modal fade">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title">Update Post</h4>
                             <button class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('category.update') }}" method="POST">
+                            <form action="{{ route('post.update.ajax') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
+                                @method('PATCH')
                                 <div class="form-group">
-                                    <input name="name" class="form-control" type="text" placeholder="category name">
-                                    <input name="id" class="form-control" type="hidden" placeholder="id">
+                                    <input name="title" class="form-control" type="text" placeholder="title">
+                                    <input name="id" class="form-control" type="hidden" placeholder="title">
                                 </div>
                                 <div class="form-group">
-                                    <input class="btn btn-block btn-primary" type="submit" value="Update">
+                                    <label for="">Categories:</label>
+
+                                    <div class="cl"></div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label style="cursor: pointer; font-size: 60px;" for="fimage_edit"><i class="fa fa-file-image-o" aria-hidden="true"></i></label>
+                                    <input style="display: none;" name="fimg" id="fimage_edit" type="file" >
+                                    <img style="max-width: 100%; display: block" src="" id="post_featured_image_edit" alt="">
+                                </div>
+                                <div class="form-group">
+                                    <textarea id="" name="content" class="form-control" rows="10"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <input class="btn btn-block btn-primary" type="submit" value="Add">
                                 </div>
                             </form>
                         </div>

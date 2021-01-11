@@ -86,7 +86,34 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+       $data= Post::find($id);
+        $cat_all= Category::all();
+       $post_cat = $data -> categories;
+
+       $check_id= [];
+       foreach ($post_cat as $check_cat){
+           array_push($check_id, $check_cat-> id);
+       }
+
+        $cat_list='';
+        foreach ($cat_all as $cat){
+            if ( in_array($cat -> id,$check_id) ){
+                $checked='checked';
+            }else{
+                $checked='';
+            }
+
+            $cat_list .= '<div class="checkbox"><label><input '.$checked.' type="checkbox" value="'.$cat-> id .'" name="category[]"> '.$cat-> name .'</label></div>';
+        }
+
+       return [
+        'id' => $data -> id,
+        'title' => $data -> title,
+        'image' =>$data-> featured_image,
+        'cat_list' => $cat_list,
+           'content'=>$data-> content,
+       ];
+
     }
 
     /**
@@ -98,7 +125,7 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Post::all();
     }
 
     /**
@@ -132,5 +159,32 @@ class PostController extends Controller
         $data -> status ='Published';
         $data -> update();
         return redirect()->route('post.index')->with('success','Post published successful');
+    }
+
+    /**
+     * post update
+     */
+    public function postUpdate(Request $request){
+        $post_id= $request -> id;
+
+        $post_data = Post::find($post_id);
+
+        if ($request->hasFile('fimg')){
+            $img = $request->file('fimg');
+            $file_name = md5(time().rand()).'.'.$img->getClientOriginalExtension() ;
+            $img->move(public_path('media/posts'),$file_name);
+        }else{
+            $file_name ='';
+        }
+
+        $post_data -> title = $request -> title;
+        $post_data -> content = $request -> content;
+        $post_data -> featured_image = $file_name;
+        $post_data -> update();
+
+        $post_data -> categories() -> detach();
+        $post_data -> categories() -> attach($request -> category);
+
+        return redirect()->route('post.index')->with('success','Post Updated successful');
     }
 }

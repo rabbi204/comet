@@ -39,5 +39,7 @@ Route::get('tag-published/{id}', 'App\Http\Controllers\TagController@publishedTa
 
 // all Post routes
 Route::resource('post','App\Http\Controllers\PostController');
+Route::get('post-edit/{id}', 'App\Http\Controllers\PostController@edit');
+Route::patch('post-update', 'App\Http\Controllers\PostController@postUpdate')-> name('post.update.ajax');
 Route::get('post-unpublished/{id}', 'App\Http\Controllers\PostController@unpublishedTag')-> name('post.unpublished');
 Route::get('post-published/{id}', 'App\Http\Controllers\PostController@publishedTag')-> name('post.published');

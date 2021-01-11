@@ -44,7 +44,7 @@
 
                 @foreach($all_posts as $post)
                     <li>
-                        <a href="#">{{ $post -> title }}<i class="ti-arrow-right"></i><span>{{ date('F d,Y',strtotime($post -> created_at)) }}</span></a>
+                        <a href="#">{{ $post -> title }}<i class="ti-arrow-right"></i><span>{{ date('M d,Y',strtotime($post -> created_at)) }}</span></a>
                     </li>
                 @endforeach
             </ul>

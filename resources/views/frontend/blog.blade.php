@@ -32,7 +32,7 @@
                         <article class="post-single">
                             <div class="post-info">
                                 <h2><a href="#">{{ $post -> title }}</a></h2>
-                                <h6 class="upper"><span>By</span><a href="#"> {{ $post -> author -> name  }}</a><span class="dot"></span><span>{{ $post -> created_at -> diffForHumans() }}</span><span class="dot"></span>
+                                <h6 class="upper"><span>By</span><a href="#"> {{ $post -> author -> name  }}</a><span class="dot"></span><span>{{ date('F d,Y', strtotime($post-> created_at)) }}</span><span class="dot"></span>
 
                                     @foreach($post ->categories as $cat_name).
                                         <a href="{{ $cat_name -> slug }}" class="post-tag">{{ $cat_name -> name }}</a>
