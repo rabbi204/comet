@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -32,4 +33,26 @@ class FrontEndController extends Controller
 
         return view('frontend.blog-single',compact('single_post'));
     }
+
+    /**
+     *  post search by category
+     */
+    public function postByCategory($slug){
+
+        $cats = Category::where('slug',$slug)->first();
+        return view('frontend.category-search',compact('cats'));
+    }
+
+    /**
+     *  post search by search field
+     */
+    protected function postBySearch(Request $request)
+    {
+        $search_text = $request -> search;
+
+        $posts = Post::where('title','like','%'.$search_text.'%') -> get();
+
+        return view('frontend.search',compact('posts'));
+    }
+
 }

@@ -169,7 +169,7 @@
                                     <textarea id="" name="content" class="form-control" rows="10"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <input class="btn btn-block btn-primary" type="submit" value="Add">
+                                    <input class="btn btn-block btn-primary" type="submit" value="Update">
                                 </div>
                             </form>
                         </div>

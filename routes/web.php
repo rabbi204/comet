@@ -19,6 +19,12 @@ Route::get('/','App\Http\Controllers\FrontEndController@homePage');
 Route::get('/blog','App\Http\Controllers\FrontEndController@blogPage')->name('blog');
 Route::get('/blog-single/{slug}','App\Http\Controllers\FrontEndController@singlePost') -> name('blog.single');
 
+// blog post search by search field
+
+Route::post('search','App\Http\Controllers\FrontEndController@postBySearch')-> name('post.search');
+
+// blog post search by category
+Route::get('category/{slug}','App\Http\Controllers\FrontEndController@postByCategory') ->name('blog.search.category');
 
 Auth::routes();
 

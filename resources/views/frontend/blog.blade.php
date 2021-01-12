@@ -86,7 +86,7 @@
                 </div>
 
 {{--                sidebar loading--}}
-                @include('frontend.layouts.sidebar')
+                @include('frontend.layouts.partials.sidebar')
 
             </div>
             <!-- end of row-->
