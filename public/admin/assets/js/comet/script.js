@@ -72,6 +72,7 @@
                     $('#post_modal_update textarea').text(data.content);
                     $('#post_featured_image_edit').attr('src', 'media/posts/' + data.image);
                     $('#post_modal_update .cl').html(data.cat_list);
+                    $('#post_modal_update .tl').html(data.tag_list);
 
                     //modal show using js
                     $('#post_modal_update').modal('show');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -20,7 +21,8 @@ class PostController extends Controller
     {
         $all_data = Post::latest() -> get();
         $categories = Category::all();
-        return view('admin.post.index',compact('all_data','categories'));
+        $all_tags= Tag::all();
+        return view('admin.post.index',compact('all_data','categories','all_tags'));
     }
 
     /**
@@ -41,6 +43,8 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $this ->validate($request, [
             'title'     =>'required',
             'content'     =>'required',
@@ -64,7 +68,11 @@ class PostController extends Controller
 
         $post_user ->categories()->attach($request ->category);
 
+        $post_user ->tags()->attach($request -> tag );
+
         return redirect()->route('post.index')->with('success', 'Post added successful');
+
+
     }
 
     /**
@@ -106,12 +114,34 @@ class PostController extends Controller
             $cat_list .= '<div class="checkbox"><label><input '.$checked.' type="checkbox" value="'.$cat-> id .'" name="category[]"> '.$cat-> name .'</label></div>';
         }
 
+        /**
+         * for tag update
+         */
+        $tag_all = Tag::all();
+        $post_tag= $data -> tags;
+
+        $check_id_2=[];
+        foreach ($post_tag as $check_tag){
+            array_push($check_id_2,$check_tag -> id);
+        }
+
+        $tag_list = '';
+        foreach ($tag_all as $tag){
+            if ( in_array($tag -> id, $check_id_2) ){
+                $checked_tag = 'checked';
+            }else{
+                $checked_tag = '';
+            }
+            $tag_list .= '<div class="checkbox"><label><input '.$checked_tag.' type="checkbox" value="'.$tag -> id .'" name="tag[]"> '.$tag-> name .'</label></div>';
+        }
+
        return [
         'id' => $data -> id,
         'title' => $data -> title,
         'image' =>$data-> featured_image,
         'cat_list' => $cat_list,
-           'content'=>$data-> content,
+        'tag_list' => $tag_list,
+         'content'=>$data-> content,
        ];
 
     }
@@ -184,7 +214,8 @@ class PostController extends Controller
 
         $post_data -> categories() -> detach();
         $post_data -> categories() -> attach($request -> category);
-
+        $post_data -> tags() -> detach();
+        $post_data -> tags() -> attach($request -> tag);
         return redirect()->route('post.index')->with('success','Post Updated successful');
     }
 }

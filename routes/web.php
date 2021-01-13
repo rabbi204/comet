@@ -26,6 +26,9 @@ Route::post('search','App\Http\Controllers\FrontEndController@postBySearch')-> n
 // blog post search by category
 Route::get('category/{slug}','App\Http\Controllers\FrontEndController@postByCategory') ->name('blog.search.category');
 
+// blog post search by tag
+Route::get('tag/{slug}','App\Http\Controllers\FrontEndController@postByTag') ->name('blog.search.tag');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -31,7 +31,7 @@
                 @endphp
 
                 @foreach( $all_tags as $tag )
-                    <a href="#">{{ $tag -> name }}</a>
+                    <a href="{{ route('blog.search.tag', $tag -> slug) }}">{{ $tag -> name }}</a>
                 @endforeach
             </div>
         </div>

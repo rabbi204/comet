@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class FrontEndController extends Controller
@@ -41,6 +42,15 @@ class FrontEndController extends Controller
 
         $cats = Category::where('slug',$slug)->first();
         return view('frontend.category-search',compact('cats'));
+    }
+
+    /**
+     *  post search by tag
+     */
+    public function postByTag($slug){
+
+        $all_tags = Tag::where('slug',$slug)->first();
+        return view('frontend.tag-search',compact('all_tags'));
     }
 
     /**

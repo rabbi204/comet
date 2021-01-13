@@ -54,9 +54,13 @@
                                                     {{ $category -> name }} |
                                                 @endforeach
                                             </td>
-                                            <td>{{ $data -> tag }}</td>
                                             <td>
-                                                @if(!empty($data->featured_image))
+                                                @foreach( $data -> tags  as $tag)
+                                                    {{ $tag -> name }} |
+                                                @endforeach
+                                            </td>
+                                            <td>
+                                                @if( !empty($data->featured_image) )
                                                     <img style="width: 60px;height: 60px;" src="{{ URL::to('/') }}/media/posts/{{ $data -> featured_image }}" alt="">
                                                 @endif
                                             </td>
@@ -121,6 +125,22 @@
                                     @endforeach
 
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="">All tags:</label>
+
+                                    @foreach($all_tags as $tag)
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" value="{{ $tag -> id }}" name="tag[]"> {{ $tag -> name  }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+
+                                </div>
+
+
+
                                 <div class="form-group">
                                     <label style="cursor: pointer; font-size: 60px;" for="fimage"><i class="fa fa-file-image-o" aria-hidden="true"></i></label>
                                     <input style="display: none;" name="fimg" id="fimage" type="file" >
@@ -156,9 +176,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="">Categories:</label>
-
                                     <div class="cl"></div>
-
+                                </div>
+                                <div class="form-group">
+                                    <label for="">All tags:</label>
+                                    <div class="tl"></div>
                                 </div>
                                 <div class="form-group">
                                     <label style="cursor: pointer; font-size: 60px;" for="fimage_edit"><i class="fa fa-file-image-o" aria-hidden="true"></i></label>
