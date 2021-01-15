@@ -1,9 +1,5 @@
 @php
-
    $settings= App\Models\Settings::find(1);
-
-
-
 @endphp
 
 <!DOCTYPE html>

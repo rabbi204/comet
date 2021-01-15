@@ -3,38 +3,36 @@
 @section('main-content')
     <!-- Home section-->
     <section id="home">
+
+        @php
+            $slider = App\Models\HomePage::find(1);
+            $slider_content = json_decode($slider -> sliders);
+        @endphp
+
         <!-- Video background-->
-        <div id="video-wrapper" data-fallback-bg="frontend/images/bg/5.jpg">
-            <div data-property="{videoURL: '9No-FiEInLA'}" class="player"></div>
+        <div id="video-wrapper" data-fallback-bg="{{ $slider_content -> svideo }}">
+            <div data-property="{videoURL: '{{ $slider_content -> svideo }}'}" class="player"></div>
         </div>
         <!-- end of video background-->
         <!-- Home Slider-->
         <div id="home-slider" class="flexslider">
             <ul class="slides">
+
+                @foreach( $slider_content -> slider as $slide )
                 <li>
                     <div class="slide-wrap">
                         <div class="slide-content text-left bold-text">
                             <div class="container">
-                                <h6>Start building today. It's your turn.</h6>
-                                <h1 class="upper">Interactive design studio<span class="red-dot"></span></h1>
-                                <p><a href="#" class="btn btn-light-out">Read More</a><a href="#" class="btn btn-color btn-full">Services</a>
+                                <h6>{{ $slide -> subtitle }}</h6>
+                                <h1 class="upper">{{ $slide -> title }}<span class="red-dot"></span></h1>
+                                <p><a href="#" class="btn btn-light-out">{{ $slide -> btn1_title }}</a><a href="#" class="btn btn-color btn-full">{{ $slide -> btn2_title }}</a>
                                 </p>
                             </div>
                         </div>
                     </div>
                 </li>
-                <li>
-                    <div class="slide-wrap">
-                        <div class="slide-content text-left bold-text">
-                            <div class="container">
-                                <h6>We create websites and videos.</h6>
-                                <h1 class="upper">Welcome to comet<span class="red-dot"></span></h1>
-                                <p><a href="#" class="btn btn-color">Explore</a><a href="#" class="btn btn-light-out">Join us</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                @endforeach
+
             </ul>
         </div>
         <!-- end of home slider-->

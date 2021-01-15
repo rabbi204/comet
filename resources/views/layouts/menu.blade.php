@@ -21,6 +21,18 @@
                 </li>
 
                 <li class="submenu">
+                    <a href="#"><i class="fe fe-document"></i> <span>Home Settings </span> <span class="menu-arrow"></span></a>
+                    <ul style="display: none;">
+                        <li><a href="{{ route('slider.index') }}">Slider</a></li>
+                        <li><a href="">Who We Are</a></li>
+                        <li><a href="">Vision</a></li>
+                        <li><a href="">Testimonials</a></li>
+                        <li><a href="">Clients</a></li>
+                        <li><a href="">Home Setup</a></li>
+                    </ul>
+                </li>
+
+                <li class="submenu">
                     <a href="#"><i class="fe fe-document"></i> <span> Settings </span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="{{ route('logo.index') }}">Logo</a></li>

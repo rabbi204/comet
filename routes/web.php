@@ -61,3 +61,8 @@ Route::put('settings/logo-update','App\Http\Controllers\SettingsController@logoU
 // web social route
 Route::get('settings/social','App\Http\Controllers\SettingsController@socialIndex')-> name('social.index');
 Route::post('settings/social-update','App\Http\Controllers\SettingsController@socialUpdate')-> name('social.update');
+
+Route::group(['namespace' => 'App\Http\Controllers','prefix'=>'home'],function (){
+    Route::get('slider','HomePageController@index') ->name('slider.index');
+    Route::post('slider/store','HomePageController@sliderStore') ->name('slider.store');
+});
