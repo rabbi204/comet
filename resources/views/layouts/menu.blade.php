@@ -27,7 +27,7 @@
                         <li><a href="">Who We Are</a></li>
                         <li><a href="">Vision</a></li>
                         <li><a href="">Testimonials</a></li>
-                        <li><a href="">Clients</a></li>
+                        <li><a href="{{ route('clients.index') }}">Clients</a></li>
                         <li><a href="">Home Setup</a></li>
                     </ul>
                 </li>

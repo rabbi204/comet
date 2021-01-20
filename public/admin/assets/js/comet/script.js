@@ -126,5 +126,26 @@
             $('#slider-card-'+ remove_code).remove();
         });
 
+        //Img Preview Function in clients
+        function imgPreviewFunction(id, load_url) {
+            $(id).change(function (e) {
+                let file_url = URL.createObjectURL(e.target.files[0]);
+                $(load_url).attr('src', file_url);
+            });
+
+        }
+
+        //Logo load
+        imgPreviewFunction('#dark-logo', '#dark-logo-load');
+        imgPreviewFunction('#light-logo', '#light-logo-load');
+
+        //Client image show
+        imgPreviewFunction('#cl1', '#cl1-load');
+        imgPreviewFunction('#cl2', '#cl2-load');
+        imgPreviewFunction('#cl3', '#cl3-load');
+        imgPreviewFunction('#cl4', '#cl4-load');
+        imgPreviewFunction('#cl5', '#cl5-load');
+        imgPreviewFunction('#cl6', '#cl6-load');
+
     });
 })(jQuery)

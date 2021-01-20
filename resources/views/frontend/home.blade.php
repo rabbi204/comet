@@ -7,6 +7,10 @@
         @php
             $slider = App\Models\HomePage::find(1);
             $slider_content = json_decode($slider -> sliders);
+
+            $clients_all = App\Models\HomePage::find(1);
+            $clients_data = $clients_all -> clients;
+            $clients = json_decode($clients_data);
         @endphp
 
         <!-- Video background-->
@@ -326,30 +330,30 @@
     <section>
         <div class="container">
             <div class="title center">
-                <h4 class="upper">Some of the best.</h4>
-                <h3>Our Clients<span class="red-dot"></span></h3>
+                <h4 class="upper">{{ $clients -> tagline }}</h4>
+                <h3>{{ $clients -> title }}<span class="red-dot"></span></h3>
                 <hr>
             </div>
             <div class="section-content">
                 <div class="boxes clients">
                     <div class="row">
                         <div class="col-sm-4 col-xs-6 border-right border-bottom">
-                            <img src="frontend/images/clients/1.png" alt="" data-animated="true" class="client-image">
+                            <img src="{{ asset('/') }}media/clients/{{ $clients->cl1 }}" alt="" data-animated="true" class="client-image">
                         </div>
                         <div class="col-sm-4 col-xs-6 border-right border-bottom">
-                            <img src="frontend/images/clients/2.png" alt="" data-animated="true" data-delay="500" class="client-image">
+                            <img src="{{ asset('/') }}media/clients/{{ $clients->cl2 }}" alt="" data-animated="true" data-delay="500" class="client-image">
                         </div>
                         <div class="col-sm-4 col-xs-6 border-bottom">
-                            <img src="frontend/images/clients/3.png" alt="" data-animated="true" data-delay="1000" class="client-image">
+                            <img src="{{ asset('/') }}media/clients/{{ $clients->cl3 }}" alt="" data-animated="true" data-delay="1000" class="client-image">
                         </div>
                         <div class="col-sm-4 col-xs-6 border-right">
-                            <img src="frontend/images/clients/4.png" alt="" data-animated="true" class="client-image">
+                            <img src="{{ asset('/') }}media/clients/{{ $clients->cl4 }}" alt="" data-animated="true" class="client-image">
                         </div>
                         <div class="col-sm-4 col-xs-6 border-right">
-                            <img src="frontend/images/clients/5.png" alt="" data-animated="true" data-delay="500" class="client-image">
+                            <img src="{{ asset('/') }}media/clients/{{ $clients->cl5 }}" alt="" data-animated="true" data-delay="500" class="client-image">
                         </div>
                         <div class="col-sm-4 col-xs-6">
-                            <img src="frontend/images/clients/6.png" alt="" data-animated="true" data-delay="1000" class="client-image">
+                            <img src="{{ asset('/') }}media/clients/{{ $clients->cl6 }}" alt="" data-animated="true" data-delay="1000" class="client-image">
                         </div>
                     </div>
                     <!-- end of row-->
